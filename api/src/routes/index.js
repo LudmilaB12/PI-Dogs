@@ -7,6 +7,7 @@ const { API_KEY } = process.env;
 const { Dog, Temperament } = require("../db");
 
 const { allDogs } = require("../controllers/dogs")
+const { getTemperament } = require("../controllers/temperament")
 
 
 const router = Router();
@@ -35,6 +36,7 @@ router.get('/dogs', async(req, res) =>{ //funciona con los de la api, faltan DB
 router.get('/dogs/:id', async(req, res) => {  //funciona probar con los db
     const { id } = req.params
 
+
     if(id){
         try{
             const totalDogs = await allDogs()
@@ -45,6 +47,28 @@ router.get('/dogs/:id', async(req, res) => {  //funciona probar con los db
             console.log(err)
         }
     }
+})
+
+router.get('/temperament', async (req, res) =>{
+    
+
+    try{
+        const uploadTemps = await getTemperament()
+        console.log(uploadTemps)
+
+        const temps = await Temperament.findAll()
+        const listTemp = await temps.map( e => e.name)
+
+        console.log(listTemp)
+
+        res.status(200).send(listTemp)
+        
+    } catch(err){
+        console.log(err)
+    }
+
+    
+
 })
 
 router.post('/dog', async (req, res) => {
