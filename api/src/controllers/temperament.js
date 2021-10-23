@@ -7,15 +7,19 @@ const { getApiInfo } = require('./dogs')
 const getTemperament = async () => {
     let tempInDB = false;
 
-    if(!tempInDB) {
-        let dogTemperament = await getApiInfo()
+    if(tempInDB === false) {
+        let response = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
 
-        dogTemperament = dogTemperament.map( temp => {
+        
+
+        let dogTemperament = await response.data.map( temp => {
             if(temp.temperament){
                 return temp.temperament
             }
         }).join().split(",")
-        //acá se crea un array con todos los temperamentos de los perros de la api
+        // acá se crea un array con todos los temperamentos de los perros de la api
+
+        
 
         let temps = [] //declaro un array vacio donde estaran todos los temps
 
@@ -29,15 +33,13 @@ const getTemperament = async () => {
             await Temperament.create({
                 name: e
             })
-        })
+        }) // aca creo cada temperamento en la tabla
 
-        console.log(temps)
+        // console.log(temps)
 
         console.log("todo cargado a la db")
 
-        if(temps.length){
-            tempInDB = true;
-        }
+        tempInDB = true
     }else{
         console.log("Ya se encuentra todo cargado en la DB")
     }

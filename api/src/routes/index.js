@@ -15,7 +15,7 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.get('/dogs', async(req, res) =>{ //funciona con los de la api, faltan DB
+router.get('/dogs', async(req, res) =>{ //funciona 
     const { name } = req.query
 
     if(name) {
@@ -33,7 +33,7 @@ router.get('/dogs', async(req, res) =>{ //funciona con los de la api, faltan DB
     }
 })
 
-router.get('/dogs/:id', async(req, res) => {  //funciona probar con los db
+router.get('/dogs/:id', async(req, res) => {  //funciona 
     const { id } = req.params
 
 
@@ -49,17 +49,17 @@ router.get('/dogs/:id', async(req, res) => {  //funciona probar con los db
     }
 })
 
-router.get('/temperament', async (req, res) =>{
+router.get('/temperament', async (req, res) =>{ //FUNCIONA
     
 
     try{
         const uploadTemps = await getTemperament()
-        console.log(uploadTemps)
+        // console.log(uploadTemps)
 
         const temps = await Temperament.findAll()
         const listTemp = await temps.map( e => e.name)
 
-        console.log(listTemp)
+        // console.log(listTemp)
 
         res.status(200).send(listTemp)
         
@@ -71,7 +71,7 @@ router.get('/temperament', async (req, res) =>{
 
 })
 
-router.post('/dog', async (req, res) => {
+router.post('/dog', async (req, res) => { //FUNCIONA
     let {
         id,
         name,
@@ -79,7 +79,8 @@ router.post('/dog', async (req, res) => {
         weight,
         lifeSpan,
         image,
-        temperaments
+        temperaments,
+        created
     } = req.body
 
     if(!name || !height || !weight ){
@@ -92,7 +93,8 @@ router.post('/dog', async (req, res) => {
             weight,
             lifeSpan,
             image,
-            temperaments
+            temperaments,
+            created
         })
         let temperamentDB = await Temperament.findAll({
             where: {

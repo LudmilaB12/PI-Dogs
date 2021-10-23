@@ -14,6 +14,7 @@ const getApiInfo = async () => {
             weight: el.weight,
             lifeSpan: el.life_span,
             image: el.image,
+            temperament: el.temperament
         }
     })
 
@@ -21,15 +22,19 @@ const getApiInfo = async () => {
 }
 
 const getDBinfo = async () => {
-    const dogInDB = await Dog.findAll()
-
+    const dogInDB = await Dog.findAll({
+        include:{ 
+            model: Temperament,
+            attributes: ["name"]
+           }
+    })
 
     return dogInDB;
 }
 
 const allDogs = async () => {
     const apiInfo = await getApiInfo();
-    const dbInfo = await getDBinfo(); //me falta traerme el temperamento
+    const dbInfo = await getDBinfo(); 
     const allInfo = apiInfo.concat(dbInfo);
 
 
@@ -38,5 +43,6 @@ const allDogs = async () => {
 }
 
 module.exports = {
-    allDogs
+    allDogs,
+    getApiInfo
 }
