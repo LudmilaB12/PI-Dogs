@@ -40,7 +40,7 @@ function rootReducer(state = initialState, action){
             }
         case "SORT_BY_NAME":
             let sorted = action.payload === "A-Z" ? 
-            state.allDogs.sort(function(a, b){
+            state.dogs.sort(function(a, b){
                 if(a.name > b.name){
                     return 1
                 }
@@ -48,7 +48,7 @@ function rootReducer(state = initialState, action){
                     return -1
                 }
                 return 0
-            }) : state.allDogs.sort(function(a, b){
+            }) : state.dogs.sort(function(a, b){
                 if(a.name > b.name){
                     return -1;
                 }
