@@ -1,6 +1,7 @@
 const initialState = {
     allDogs : [],
-    dogs: []
+    dogs: [],
+    temps: []
 }
 
 function rootReducer(state = initialState, action){
@@ -16,6 +17,30 @@ function rootReducer(state = initialState, action){
                 ...state,
                 dogs: action.payload
             }
+        case "GET_TEMPS":
+            return{
+                ...state,
+                temps: action.payload
+            }
+        case "FILTER_TEMP":
+            const console1 = state.allDogs
+            console.log(console1)
+            const allDogies = state.allDogs
+            const allTemps = state.temps
+            const filterTemps = action.payload === "allTemps" ? allTemps : allDogies.filter( e =>{
+                if(e.created){
+                   if( e.temperaments.includes(action.payload)){
+                       return e
+                   }
+                   
+                }else if(e.temperament && e.temperament.length && e.temperament.includes(action.payload)) return e
+            })
+            return{
+                ...state,
+                dogs: filterTemps
+
+            }
+
 
         default:
             return state;

@@ -19,3 +19,20 @@ export function getDogByName(payload){
         })
     }
 }
+
+export function getTemperament (){
+    return async function(dispatch){
+        var json = await axios.get("http://localhost:3001/temperament")
+        return dispatch({
+            type: "GET_TEMPS",
+            payload: json.data
+        })
+    }
+}
+
+export function filterByTemp(payload) {
+    return ({
+        type: "FILTER_TEMP",
+        payload
+    })
+}

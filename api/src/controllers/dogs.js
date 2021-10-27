@@ -13,7 +13,7 @@ const getApiInfo = async () => {
             height: el.height,
             weight: el.weight,
             lifeSpan: el.life_span,
-            image: el.image,
+            image: el.image.url,
             temperament: el.temperament
         }
     })
