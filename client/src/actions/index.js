@@ -36,3 +36,11 @@ export function filterByTemp(payload) {
         payload
     })
 }
+
+export function sortByName(payload){
+    return({
+        type: "SORT_BY_NAME",
+        payload
+    })
+
+}

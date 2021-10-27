@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector } from "react-redux";
-import { getDogs, getTemperament, filterByTemp } from "../actions";
+import { getDogs, getTemperament, filterByTemp, sortByName } from "../actions";
 import {Link} from "react-router-dom";
 
 import SearchBar from "./SearchBar";
@@ -17,6 +17,10 @@ export default function Home() {
     const temperament = useSelector( state => state.temps)
 
     const allDogs = useSelector((state) => state.dogs)
+
+//--------PARA EL RENDER DE LOS SORTS---------
+
+    const [order, setOrder] = useState('') //para renderizar cuando hacemos el orden 
 
 //---------PAGINADO---------
 
@@ -52,6 +56,14 @@ export default function Home() {
         dispatch(filterByTemp(e.target.value))
     }
 
+//-------Hanlde por name--------
+    
+    function handleSortName(e){
+        e.preventDefault()
+        dispatch(sortByName(e.target.value))
+        setCurrentPage(1)
+        setOrder(`Ordenado ${e.target.value}`)
+    }
 
     return(
         <div>
@@ -73,6 +85,10 @@ export default function Home() {
                             <option value={e} key={e}>{e} </option>)
  
                     }
+                </select>
+                <select onChange={e => handleSortName(e)} >
+                    <option value="A-Z" >A - Z</option>
+                    <option value="Z-A"  >Z - A</option>
                 </select>
             </div>
 
