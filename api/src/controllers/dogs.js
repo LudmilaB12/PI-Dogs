@@ -10,8 +10,8 @@ const getApiInfo = async () => {
         return{
             id: el.id,
             name: el.name,
-            height: el.height,
-            weight: el.weight,
+            height: el.height.metric,
+            weight: el.weight.metric,
             lifeSpan: el.life_span,
             image: el.image.url,
             temperament: el.temperament

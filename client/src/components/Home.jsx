@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector } from "react-redux";
-import { getDogs, getTemperament, filterByTemp, sortByName } from "../actions";
+import { getDogs, getTemperament, filterByTemp, sortByName, filterCreatedOrNot, sortByWeight } from "../actions";
 import {Link} from "react-router-dom";
 
 import SearchBar from "./SearchBar";
@@ -47,7 +47,7 @@ export default function Home() {
    
     function handleClick(e){
         e.preventDefault()
-        dispatch(getDogs)
+        dispatch(getDogs())
     }
     
 //--------Handle filtros por temp--------
@@ -64,6 +64,22 @@ export default function Home() {
         setCurrentPage(1)
         setOrder(`Ordenado ${e.target.value}`)
     }
+
+//------Handle por creada o traida de la api------
+
+    function handleFilterCreated(e){
+        e.preventDefault()
+        dispatch(filterCreatedOrNot(e.target.value))
+    }
+
+//-----------Hanlde Sort by Weight-----------------
+   function handleSortByWeight(e){
+        e.preventDefault()
+        dispatch(sortByWeight(e.target.value))
+        setCurrentPage(1)
+        setOrder(`Ordenado ${e.target.value}`)
+}
+
 
     return(
         <div>
@@ -89,6 +105,16 @@ export default function Home() {
                 <select onChange={e => handleSortName(e)} >
                     <option value="A-Z" >A - Z</option>
                     <option value="Z-A"  >Z - A</option>
+                </select>
+                <select onChange={ e => handleFilterCreated(e)}>
+                    <option value="allDogs">Todas las razas</option>
+                    <option value="created">Razas cargadas</option>
+                    <option value="api">Razas creadas</option>
+                </select>
+                <select onChange= { e => handleSortByWeight(e)}>
+                    <option value="AllW">Ordenar por peso</option>
+                    <option value="mayorW">Mayor peso</option>
+                    <option value="menorW">Menor peso</option>
                 </select>
             </div>
 

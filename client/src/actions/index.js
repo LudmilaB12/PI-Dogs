@@ -44,3 +44,19 @@ export function sortByName(payload){
     })
 
 }
+
+export function filterCreatedOrNot (payload){
+    return({
+        type: "CREATED_OR_API",
+        payload
+    })
+
+}
+
+export function sortByWeight (payload){
+    return({
+        type: "SORT_BY_WEIGHT",
+        payload
+    })
+
+}
