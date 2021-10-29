@@ -60,3 +60,11 @@ export function sortByWeight (payload){
     })
 
 }
+
+export function postDog(payload){
+    return async function(dispatch){
+        let json = await axios.post("http://localhost:3001/dog", payload)
+        return json
+    }
+
+}
