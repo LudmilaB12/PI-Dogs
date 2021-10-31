@@ -1,7 +1,8 @@
 const initialState = {
     allDogs : [],
     dogs: [],
-    temps: []
+    temps: [],
+    detail: []
 }
 
 function rootReducer(state = initialState, action){
@@ -129,6 +130,11 @@ function rootReducer(state = initialState, action){
         case "POST_DOG":
             return{
                 ...state
+            }
+        case "GET_DETAIL":
+            return{
+                ...state,
+                detail: action.payload
             }
         default:
             return state;
