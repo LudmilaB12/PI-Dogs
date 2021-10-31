@@ -75,18 +75,23 @@ router.post('/dog', async (req, res) => { //FUNCIONA
     let {
         id,
         name,
-        height,
-        weight,
+        minHeight,
+        maxHeight,
+        minWeight,
+        maxWeight,
         lifeSpan,
         image,
         temperaments,
         created
     } = req.body
 
-    if(!name || !height || !weight ){
+    if(!name || !minHeight || !maxHeight || !minWeight ||!maxWeight ){
         res.status(404).send("Por favor completar los campos obligatorios")
     }
     try{
+        let height = minHeight + " - " + maxHeight
+        let weight = minWeight + " - " + maxWeight
+
         let createDog = await Dog.create({
             name,
             height,

@@ -16,11 +16,11 @@ function validation(input){
     if( !input.maxHeight ) {
         errors.numMaxHeight = "Es necesario introducir una medida máxima!"
     }
-    if( !input.minWidht && input.minWidht <= 0) {
-        errors.numMinWidht = "Es necesario introducir un peso mínimo!"
+    if( !input.minWeight && input.minWeight <= 0) {
+        errors.numMinWeight = "Es necesario introducir un peso mínimo!"
     }
-    if( !input.maxWidht ) {
-        errors.numMaxWidht = "Es necesario introducir un peso máximo!"
+    if( !input.maxWeight ) {
+        errors.numMaxWeight = "Es necesario introducir un peso máximo!"
     }
     return errors;
 }
@@ -33,8 +33,8 @@ export default function CreateDog(){
         name: "",
         minHeight: "",
         maxHeight: "",
-        minWidht: "",
-        maxWidht: "",
+        minWeight: "",
+        maxWeight: "",
         lifeSpan: "",
         image: "",
         temperaments: []
@@ -71,15 +71,15 @@ export default function CreateDog(){
     function handleSubmit(e){
         e.preventDefault()
         console.log(input)
-        if(input.name && input.minHeight <= 0 && input.minWidht <= 0 && input.maxHeight && input.maxWidht){
+        if(input.name && input.minHeight >= 0 && input.minWeight >= 0 && parseInt(input.maxHeight) >= parseInt(input.minHeight) && parseInt(input.maxWeight) >= parseInt(input.minWeight)){
             dispatch(postDog(input))
             alert("Dogie creado correctamente")
             setInput({
                 name: "",
                 minHeight: "",
                 maxHeight: "",
-                minWidht: "",
-                maxWidht: "",
+                minWeight: "",
+                maxWeight: "",
                 lifeSpan: "",
                 image: "",
                 temperaments: []
@@ -130,17 +130,17 @@ export default function CreateDog(){
                </div>
                <div>
                    <label>Peso Minimo(kg):</label>
-                   <input type="text" value={input.minWidht} name="minWidht" onChange={e => handleChange(e)}/>{
-                       errors.numMinWidht && ( //seteo mis errors
-                           <p className="error">{errors.numMinWidht}</p>
+                   <input type="text" value={input.minWeight} name="minWeight" onChange={e => handleChange(e)}/>{
+                       errors.numMinWeight && ( //seteo mis errors
+                           <p className="error">{errors.numMinWeight}</p>
                        )
                    }
                </div>
                <div>
                    <label>Peso Máximo(kg):</label>
-                   <input type="text" value={input.maxWidht} name="maxWidht" onChange={e => handleChange(e)}/>{
-                       errors.numMaxWidht && ( //seteo mis errors
-                           <p className="error">{errors.numMaxWidht}</p>
+                   <input type="text" value={input.maxWeight} name="maxWeight" onChange={e => handleChange(e)}/>{
+                       errors.numMaxWeight && ( //seteo mis errors
+                           <p className="error">{errors.numMaxWeight}</p>
                        )
                    }
 
