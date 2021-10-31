@@ -81,7 +81,7 @@ router.post('/dog', async (req, res) => { //FUNCIONA
         maxWeight,
         lifeSpan,
         image,
-        temperaments,
+        temperament,
         created
     } = req.body
 
@@ -98,7 +98,7 @@ router.post('/dog', async (req, res) => { //FUNCIONA
             weight,
             lifeSpan,
             image,
-            temperaments,
+            temperament,
             created
         })
         let temperamentDB = await Temperament.findAll({

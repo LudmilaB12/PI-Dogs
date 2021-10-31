@@ -69,7 +69,7 @@ export function postDog(payload){
 
 }
 
-expor function getDetail(id){
+export function getDetail(id){
     return async function(dispatch){
         try{
             let json = await axios.get("http://localhost:3001/dogs/" + id)
