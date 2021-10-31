@@ -1,7 +1,29 @@
 import React, {useState, useEffect} from "react";
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import { getTemperament, postDog } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
+
+//----------Validacion--------------
+
+function validation(input){
+    let errors = {}
+    if(input.name === ""){
+        errors.name = "Es necesario introducir un nombre!"
+    }
+    if( !input.minHeight && input.minHeight <= 0){
+        errors.numMinHeight = "Es necesario introducir una medida mínima!"
+    }
+    if( !input.maxHeight ) {
+        errors.numMaxHeight = "Es necesario introducir una medida máxima!"
+    }
+    if( !input.minWidht && input.minWidht <= 0) {
+        errors.numMinWidht = "Es necesario introducir un peso mínimo!"
+    }
+    if( !input.maxWidht ) {
+        errors.numMaxWidht = "Es necesario introducir un peso máximo!"
+    }
+    return errors;
+}
 
 export default function CreateDog(){
     const dispatch = useDispatch()
@@ -17,6 +39,7 @@ export default function CreateDog(){
         image: "",
         temperaments: []
     })
+    const [errors, setErrors]= useState({})
 
     useEffect(() =>{
         dispatch(getTemperament())}, [dispatch]
@@ -29,6 +52,10 @@ export default function CreateDog(){
             ...input,
             [e.target.name] : e.target.value
         })
+        setErrors(validation({ //paso la funcion en el change para que se ejecute
+            ...input,
+            [e.target.name] : e.target.value
+        }))
         console.log(input)
     }
 
@@ -44,19 +71,29 @@ export default function CreateDog(){
     function handleSubmit(e){
         e.preventDefault()
         console.log(input)
+        if(input.name && input.minHeight <= 0 && input.minWidht <= 0 && input.maxHeight && input.maxWidht){
+            dispatch(postDog(input))
+            alert("Dogie creado correctamente")
+            setInput({
+                name: "",
+                minHeight: "",
+                maxHeight: "",
+                minWidht: "",
+                maxWidht: "",
+                lifeSpan: "",
+                image: "",
+                temperaments: []
+            })
+        } else {
+            alert("Algo salió mal, asegurate de haber llenado correctamente todos los campos obligatorios")
+        }
+    }
 
-        dispatch(postDog(input))
-        alert("Dogie creado correctamente")
-
+//--------Handle Delete ---------
+    function handleDelete(el){
         setInput({
-            name: "",
-            minHeight: "",
-            maxHeight: "",
-            minWidht: "",
-            maxWidht: "",
-            lifeSpan: "",
-            image: "",
-            temperaments: []
+            ...input,
+            temperaments: input.temperaments.filter( e => e !== el)
         })
     }
 
@@ -69,23 +106,45 @@ export default function CreateDog(){
            <form>
                <div>
                    <label>Nombre:</label>
-                   <input type="text" value={input.name} name="name" onChange={e => handleChange(e)}></input>
+                   <input type="text" value={input.name} name="name" onChange={e => handleChange(e)} /> {
+                       errors.name && ( //seteo mis errors
+                           <p className="error">{errors.name}</p>
+                       )
+                   } 
                </div>
                <div>
                    <label>Altura Minima(cm):</label>
-                   <input type="text" value={input.minHeight} name="minHeight" onChange={e => handleChange(e)}></input>
+                   <input type="text" value={input.minHeight} name="minHeight" onChange={e => handleChange(e)}/>{
+                       errors.numMinHeight && ( //seteo mis errors
+                           <p className="error">{errors.numMinHeight}</p>
+                       )
+                   }
                </div>
                <div>
                    <label>Altura Máxima(cm):</label>
-                   <input type="text" value={input.maxHeight} name="maxHeight" onChange={e => handleChange(e)}></input>
+                   <input type="text" value={input.maxHeight} name="maxHeight" onChange={e => handleChange(e)}/>{
+                       errors.numMaxHeight && ( //seteo mis errors
+                           <p className="error">{errors.numMaxHeight}</p>
+                       )
+                   }
                </div>
                <div>
                    <label>Peso Minimo(kg):</label>
-                   <input type="text" value={input.minWidht} name="minWidht" onChange={e => handleChange(e)}></input>
+                   <input type="text" value={input.minWidht} name="minWidht" onChange={e => handleChange(e)}/>{
+                       errors.numMinWidht && ( //seteo mis errors
+                           <p className="error">{errors.numMinWidht}</p>
+                       )
+                   }
                </div>
                <div>
                    <label>Peso Máximo(kg):</label>
-                   <input type="text" value={input.maxWidht} name="maxWidht" onChange={e => handleChange(e)}></input>
+                   <input type="text" value={input.maxWidht} name="maxWidht" onChange={e => handleChange(e)}/>{
+                       errors.numMaxWidht && ( //seteo mis errors
+                           <p className="error">{errors.numMaxWidht}</p>
+                       )
+                   }
+
+                  
                </div>
                <div>
                    <label>Años de vida:</label>
@@ -103,10 +162,17 @@ export default function CreateDog(){
                            )
                        })}
                    </select>
-                   <ul><li>{input.temperaments.map( el => el + " ,")}</li></ul>
+                   <div>
+                   { input.temperaments.map( el =>
+                       <div key={el}>
+                           <ul>{el}</ul>
+                           <button onClick={() => handleDelete(el)}>x</button>
+                       </div>  
+                    )}
+                    </div>
                </div>
 
-               <button type="submit">Crear Dogie</button>
+               <button type="submit" onClick={ e => handleSubmit(e)}>Crear Dogie</button>
 
            </form>
 
