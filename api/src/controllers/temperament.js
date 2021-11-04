@@ -7,7 +7,9 @@ const { Temperament } = require('../db');
 const getTemperament = async () => {
     let tempInDB = false;
 
-    if(tempInDB === false) {
+    console.log(tempInDB)
+
+    if(!tempInDB) {
         let response = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
 
         
@@ -30,7 +32,7 @@ const getTemperament = async () => {
         }) //pusheo los temperamentos sin los espacios y sin repetir
 
         temps.map( async (e) => {
-            await Temperament.create({
+            await Temperament.findOrCreate({
                 name: e
             })
         }) // aca creo cada temperamento en la tabla

@@ -1,0 +1,81 @@
+
+.bkg {
+    background: url("./assets/BG.jpg") no-repeat fixed center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.bkg2 {
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(243, 243, 243, 0.67);
+
+}
+
+.container {
+    height: 50vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    margin-top: 25vh;
+    margin-left: 25vw;
+}
+
+.title {
+    position: fixed;
+    height: 17vh;
+    margin-top: 5vh;
+}
+
+.textContainer {
+
+    position: absolute;
+    width: 453px;
+    height: 118px;
+    left: calc(50% - 453px/2 - 8.5px);
+    top: calc(50% - 118px/2 + 25px);
+
+    background: #4D608A;
+    border-radius: 16px;
+
+}
+
+.text {
+    color: white; 
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    margin-top: 1.5vh;
+}
+
+.button {
+    position: absolute;
+    width: 173px;
+    height: 42px;
+    left: 45vw;
+    top: 80vh;
+    background: #E2B824;
+    border-radius: 18px;
+    border: none;
+    font: 'Fredoka One';
+    font-family: Fredoka One;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: #4D608A;
+
+
+
+}
+
