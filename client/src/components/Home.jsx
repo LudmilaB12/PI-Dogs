@@ -127,7 +127,7 @@ export default function Home() {
                 return(
                     <div>
                         <Link to={"/dogs/" + e.id}>
-                            <DogCard name={e.name} image={e.image} temp={e.temperament}/>
+                            <DogCard name={e.name} image={e.image} temp={e.temperament? e.temperament : e.temperaments.map( e => e.name)}/>
                         </Link>
                     </div>
                 )
