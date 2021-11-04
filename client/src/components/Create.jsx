@@ -37,7 +37,7 @@ export default function CreateDog(){
         maxWeight: "",
         lifeSpan: "",
         image: "",
-        temperament: []
+        temperaments: []
     })
     const [errors, setErrors]= useState({})
 
@@ -63,7 +63,7 @@ export default function CreateDog(){
     function handleSelect(e){
         setInput({
             ...input,
-            temperament: [...input.temperament, e.target.value]
+            temperaments: [...input.temperaments, e.target.value]
         })
         console.log(input)
     }   
@@ -82,7 +82,7 @@ export default function CreateDog(){
                 maxWeight: "",
                 lifeSpan: "",
                 image: "",
-                temperament: []
+                temperaments: []
             })
         } else {
             alert("Algo salió mal, asegurate de haber llenado correctamente todos los campos obligatorios")
@@ -93,7 +93,7 @@ export default function CreateDog(){
     function handleDelete(el){
         setInput({
             ...input,
-            temperament: input.temperament.filter( e => e !== el)
+            temperaments: input.temperaments.filter( e => e !== el)
         })
     }
 
@@ -163,7 +163,7 @@ export default function CreateDog(){
                        })}
                    </select>
                    <div>
-                   { input.temperament.map( el =>
+                   { input.temperaments.map( el =>
                        <div key={el}>
                            <ul>{el}</ul>
                            <button onClick={() => handleDelete(el)}>x</button>

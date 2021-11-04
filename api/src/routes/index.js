@@ -54,12 +54,12 @@ router.get('/temperament', async (req, res) =>{ //FUNCIONA
 
     try{
         const uploadTemps = await getTemperament()
-        // console.log(uploadTemps)
+        console.log(uploadTemps)
 
         const temps = await Temperament.findAll()
         const listTemp = await temps.map( e => e.name)
 
-        // console.log(listTemp)
+        console.log(listTemp)
 
         res.status(200).send(listTemp)
         
@@ -81,7 +81,7 @@ router.post('/dog', async (req, res) => { //FUNCIONA
         maxWeight,
         lifeSpan,
         image,
-        temperament,
+        temperaments,
         created
     } = req.body
 
@@ -98,7 +98,6 @@ router.post('/dog', async (req, res) => { //FUNCIONA
             weight,
             lifeSpan,
             image,
-            temperament,
             created
         })
         let temperamentDB = await Temperament.findAll({

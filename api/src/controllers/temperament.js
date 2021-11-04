@@ -5,11 +5,14 @@ const { Temperament } = require('../db');
 
 
 const getTemperament = async () => {
-    let tempInDB = false;
+    var tempInDB = false;
 
     console.log(tempInDB)
-
+    
     if(!tempInDB) {
+        
+        tempInDB = true;
+        
         let response = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
 
         
@@ -33,7 +36,7 @@ const getTemperament = async () => {
 
         temps.map( async (e) => {
             await Temperament.findOrCreate({
-                name: e
+                where: { name: e }      
             })
         }) // aca creo cada temperamento en la tabla
 
@@ -41,7 +44,6 @@ const getTemperament = async () => {
 
         console.log("todo cargado a la db")
 
-        tempInDB = true
     }else{
         console.log("Ya se encuentra todo cargado en la DB")
     }
