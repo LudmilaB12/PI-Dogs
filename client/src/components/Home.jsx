@@ -143,7 +143,7 @@ export default function Home() {
 
                      <div>
                         <Link to={"/dogs/" + e.id}>
-                            <DogCard name={e.name} image={e.image} temp={e.temperament? e.temperament : e.temperaments.map( e => e.name + ",  ")}/>
+                            <DogCard name={e.name} image={e.image} temp={e.created? e.temperaments.map( e => e.name + ",  ") : e.temperament}/>
                         </Link>
                     </div>
                     
