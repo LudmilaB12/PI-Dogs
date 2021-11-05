@@ -1,3 +1,9 @@
+.bigcontainer {
+    display: grid;
+    place-content: center;
+}
+
+
 
 .bkg {
     background: url("./assets/BG.jpg") no-repeat fixed center;

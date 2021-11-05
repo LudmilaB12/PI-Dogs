@@ -8,6 +8,10 @@ import SearchBar from "./SearchBar";
 import DogCard from "./DogCard";
 import Paginado from "./Paginado";
 
+import styles from "./Home.module.css"
+import logo from "./assets/Logo2.png"
+import paw from "./assets/paws (4).png"
+
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -83,35 +87,43 @@ export default function Home() {
 
     return(
         <div>
-            <div>
-                <Link to="/crear-raza">Agrega una raza de perro</Link>
+            <div className={styles.banner}>
+               <img src={logo} alt=" " className={styles.logo}/>
+               
+               <div className={styles.containerCreateB}>
+                   <img src={paw} alt = " " className={styles.img}/>
+                   <Link to="/crear-raza" style={{ textDecoration: 'none' }}><button className={styles.createbutton}>Crea tu propio Doggy</button></Link>
+               </div>
+               
+               <SearchBar/>
+
             </div>
     
-            <div><h1>¡Bienvenidos a The Dogie App</h1></div>
 
-            <SearchBar/>
-            <button onClick={e => handleClick(e)}>Volver a cargar todos los perros</button>
 
-            <div>
-                <select defaultValue="default" onChange={e => handleFilterValue(e)}>
+
+            <div className={styles.nav}>
+                <button onClick={e => handleClick(e)} className={styles.rechargeButton}>Volver a cargar todos los perros</button>
+                
+                <select defaultValue="default" onChange={e => handleFilterValue(e)} className={styles.selectcss}>
                     <option value="default" >Filtrar por temperamento</option>
                     <option value="allTemps" key="allTemps" >Todos los temperamentos</option>
                     {
                         temperament && temperament.map( e =>
                             <option value={e} key={e}>{e} </option>)
- 
+                            
                     }
                 </select>
-                <select onChange={e => handleSortName(e)} >
+                <select onChange={e => handleSortName(e)} className={styles.selectcss} >
                     <option value="A-Z" >A - Z</option>
                     <option value="Z-A"  >Z - A</option>
                 </select>
-                <select onChange={ e => handleFilterCreated(e)}>
+                <select onChange={ e => handleFilterCreated(e)} className={styles.selectcss}>
                     <option value="allDogs">Todas las razas</option>
                     <option value="created">Razas cargadas</option>
                     <option value="api">Razas creadas</option>
                 </select>
-                <select onChange= { e => handleSortByWeight(e)}>
+                <select onChange= { e => handleSortByWeight(e)} className={styles.selectcss}>
                     <option value="AllW">Ordenar por peso</option>
                     <option value="mayorW">Mayor peso</option>
                     <option value="menorW">Menor peso</option>
@@ -119,19 +131,25 @@ export default function Home() {
             </div>
 
 
-            <div>
+            <div className={styles.pages}>
                 <Paginado dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginado={paginado}/>
             </div>
+          
+          <div className={styles.cards}>
 
             { currentDogs?.map( e => {
                 return(
-                    <div>
+                    
+
+                     <div>
                         <Link to={"/dogs/" + e.id}>
                             <DogCard name={e.name} image={e.image} temp={e.temperament? e.temperament : e.temperaments.map( e => e.name + ",  ")}/>
                         </Link>
                     </div>
+                    
                 )
             })}
+          </div>
 
         </div>
     )

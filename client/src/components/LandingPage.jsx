@@ -7,6 +7,7 @@ import imageLogo from "./assets/image 1.png"
 
 export default function LandingPage () {
     return (
+        <div className={styles.bigcontainer}> 
         <div className={styles.bkg}>
             <div className={styles.bkg2}>
                 <div className={styles.container}>
@@ -19,6 +20,8 @@ export default function LandingPage () {
                       <button className={styles.button}>Entrar</button>
                    </Link>
             </div>
+        </div>
+
         </div>
     )
 }
