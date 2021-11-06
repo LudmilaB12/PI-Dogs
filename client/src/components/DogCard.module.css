@@ -1,0 +1,57 @@
+
+
+.container {
+    background-color: #ECECEC;
+    width: 21rem;
+    height: 24rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.container:hover {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+    
+}
+
+.container>a{
+    color: #4D608A
+}
+
+.dogimg {
+    border-radius: 20px;
+}
+
+.textcontainer {
+    color: white;
+    background-color: #B2977C;
+    height: 91px;
+    width: 307px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 15px;
+    justify-content: space-around;
+}
+
+h2{
+    width: 307px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: Ellipsis;
+}
+
+h3{
+    padding: 12px;
+    word-break: break-all;
+}
+.paw {
+    position: absolute;
+    width: 60px;
+}
+
+.pawcontainer {
+    position: absolute;
+}

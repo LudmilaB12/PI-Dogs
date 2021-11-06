@@ -142,7 +142,7 @@ export default function Home() {
                     
 
                      <div>
-                        <Link to={"/dogs/" + e.id}>
+                        <Link className={styles.link}to={"/dogs/" + e.id}>
                             <DogCard name={e.name} image={e.image} temp={e.created? e.temperaments.map( e => e.name + ",  ") : e.temperament}/>
                         </Link>
                     </div>
@@ -150,6 +150,10 @@ export default function Home() {
                 )
             })}
           </div>
+
+          <div className={styles.pages}>
+                <Paginado dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginado={paginado}/>
+            </div>
 
         </div>
     )
