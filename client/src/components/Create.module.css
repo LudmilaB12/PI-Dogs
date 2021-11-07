@@ -1,0 +1,123 @@
+
+.container {
+    background-color: #ECECEC;
+    height: 76vh;
+    margin-top: 5vh;
+    margin-left: 25vw;
+    width: 50vw;
+    border-radius: 41px;
+}
+
+.title {
+    font-size: xxx-large;
+    padding-top: 20px;
+    color: #4D608A;
+}
+
+.containerName {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    background-color: #E2B824;
+    padding: 9px;
+    font-size: x-large;
+    border-radius: 10px;
+    color: white;
+    margin: 10px;
+}
+
+.input{
+    border: none;
+    width: 300px;
+    border-radius: 20px;
+    height: 40px;
+    font-family: Fredoka One;
+    font-size: 25px;
+    outline: none;
+    color: #4D608A;
+}
+
+.select{
+    display: block;
+    width: 255px;
+    height: 41px;
+    border-radius: 15px;
+    border: none;
+    font-family: Fredoka One;
+    font-size: 20px;
+    color: #4D608A;
+    outline: none;
+}
+
+.containerop{
+    background-color: transparent;
+    position: absolute;
+    width: 29vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6vh;
+    border-radius: 20px;
+    margin-top: 14vh;
+    color: white;
+}
+
+.options {
+    display: flex;
+}
+
+.button {
+    display: inline;
+    background-color: transparent;
+    border: none;
+    color: #4D608A;
+    font-family: Fredoka One;
+    font-size: 15px;
+}
+
+.buttonCreate {
+    height: 4vh;
+    width: 20vw;
+    margin-top: 6vh;
+    align-items: center;
+    margin-left: 0vw;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    background-color: #4FB3A7;
+    color: white;
+    font-family: Fredoka One;
+    font-size: 25px;
+}
+
+.buttonBack{
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    border: none;
+    background-color: #4FB3A7;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 7vh;
+    left: 5vw;
+    font-family: Fredoka One;
+}
+
+.paw3 {
+    position: absolute;
+    width: 87px;
+    margin-left: 18vw;
+    margin-top: 1vh;
+}
+
+.paw4 {
+    position: absolute;
+    width: 65px;
+    margin-top: 14vh;
+    margin-left: 7vw;
+}

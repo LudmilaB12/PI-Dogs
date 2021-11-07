@@ -3,6 +3,11 @@ import {Link} from "react-router-dom";
 import { getTemperament, postDog } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
 
+import styles from "./Create.module.css"
+import paw3 from "./assets/paws (3).png"
+import paw4 from "./assets/paws (4).png"
+
+
 //----------Validacion--------------
 
 function validation(input){
@@ -96,49 +101,53 @@ export default function CreateDog(){
             temperaments: input.temperaments.filter( e => e !== el)
         })
     }
-
-
+    
+    
     return(
-
+        
         <div>
-           <Link to="/home"><button>Volver</button></Link>
-           <h1>Crea tu propio Dogie</h1>
+           <Link to="/home"><button className={styles.buttonBack}>Volver</button></Link>
+           <div className={styles.container}>
+               <img className={styles.paw3} src={paw3} alt=" " />
+            <h1 className={styles.title}>Crea tu propio Dogie</h1>
            <form>
-               <div>
-                   <label>Nombre:</label>
-                   <input type="text" value={input.name} name="name" onChange={e => handleChange(e)} /> {
+              
+               <div className={styles.containerName}>
+
+                   <label className={styles.text}>Nombre:</label>
+                     <input className={styles.input} type="text" value={input.name} name="name" onChange={e => handleChange(e)} /> {
                        errors.name && ( //seteo mis errors
                            <p className="error">{errors.name}</p>
                        )
                    } 
                </div>
-               <div>
-                   <label>Altura Minima(cm):</label>
-                   <input type="text" value={input.minHeight} name="minHeight" onChange={e => handleChange(e)}/>{
+               <div className={styles.containerName}>
+                   <label className={styles.text}>Altura Minima(cm):</label>
+                   <input className={styles.input} type="text" value={input.minHeight} name="minHeight" onChange={e => handleChange(e)}/>{
                        errors.numMinHeight && ( //seteo mis errors
                            <p className="error">{errors.numMinHeight}</p>
                        )
                    }
                </div>
-               <div>
-                   <label>Altura Máxima(cm):</label>
-                   <input type="text" value={input.maxHeight} name="maxHeight" onChange={e => handleChange(e)}/>{
+               <div className={styles.containerName}>
+                   <label className={styles.text}>Altura Máxima(cm):</label>
+                   <input className={styles.input} type="text" value={input.maxHeight} name="maxHeight" onChange={e => handleChange(e)}/>{
                        errors.numMaxHeight && ( //seteo mis errors
                            <p className="error">{errors.numMaxHeight}</p>
                        )
                    }
                </div>
-               <div>
-                   <label>Peso Minimo(kg):</label>
-                   <input type="text" value={input.minWeight} name="minWeight" onChange={e => handleChange(e)}/>{
+               <div className={styles.containerName}>
+                   <label className={styles.text}>Peso Minimo(kg):</label>
+                   <input className={styles.input} type="text" value={input.minWeight} name="minWeight" onChange={e => handleChange(e)}/>{
                        errors.numMinWeight && ( //seteo mis errors
                            <p className="error">{errors.numMinWeight}</p>
                        )
                    }
                </div>
-               <div>
-                   <label>Peso Máximo(kg):</label>
-                   <input type="text" value={input.maxWeight} name="maxWeight" onChange={e => handleChange(e)}/>{
+               <div className={styles.containerName}>
+                   <label className={styles.text}>Peso Máximo(kg):</label>
+                   <input className={styles.input} type="text" value={input.maxWeight} name="maxWeight" onChange={e => handleChange(e)}/>{
                        errors.numMaxWeight && ( //seteo mis errors
                            <p className="error">{errors.numMaxWeight}</p>
                        )
@@ -146,36 +155,37 @@ export default function CreateDog(){
 
                   
                </div>
-               <div>
-                   <label>Años de vida:</label>
-                   <input type="text" value={input.lifeSpan} name="lifeSpan" onChange={e => handleChange(e)}></input>
+               <div className={styles.containerName}>
+                   <label className={styles.text}>Años de vida:</label>
+                   <input className={styles.input} type="text" value={input.lifeSpan} name="lifeSpan" onChange={e => handleChange(e)}></input>
                </div>
-               <div>
-                   <label>Url de la imagen:</label>
-                   <input type="text" value={input.image} name="image" onChange={e => handleChange(e)}></input>
+               <div className={styles.containerName}>
+                   <label className={styles.text}>Url de la imagen:</label>
+                   <input className={styles.input} type="text" value={input.image} name="image" onChange={e => handleChange(e)}></input>
                </div>
-               <div>
-                   <select onChange={ e => handleSelect(e)}>
+               <div className={styles.containerName}>
+                   <select className={styles.select} onChange={ e => handleSelect(e)}>
                        { temp.map( e => {
                            return(
                             <option value={e}>{e}</option>
                            )
                        })}
                    </select>
-                   <div>
+                   <div className={styles.containerop}>
                    { input.temperaments.map( el =>
-                       <div key={el}>
-                           <ul>{el}</ul>
-                           <button onClick={() => handleDelete(el)}>x</button>
+                       <div className={styles.options} key={el}>
+                           <button className={styles.button} onClick={() => handleDelete(el)}>{el}</button>
                        </div>  
-                    )}
+                    )                   
+                    }
                     </div>
                </div>
 
-               <button type="submit" onClick={ e => handleSubmit(e)}>Crear Dogie</button>
-
            </form>
 
+               <img className={styles.paw4} src={paw4} alt=" " />
+           </div>
+               <button className={styles.buttonCreate} type="submit" onClick={ e => handleSubmit(e)}>Crear Doggy Nuevo</button>
 
         </div>
 
